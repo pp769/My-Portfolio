@@ -243,6 +243,45 @@ a{color:inherit;}
   position:relative;
   display:flex;
   justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  gap:22px;
+}
+
+/* ============ PROFILE PHOTO ============ */
+.profile-photo-card{
+  width:100%;
+  max-width:340px;
+  border-radius:10px;
+  padding:12px;
+  background:var(--navy);
+  box-shadow:0 18px 42px -24px rgba(19,41,75,0.65);
+  position:relative;
+}
+.profile-photo-card::after{
+  content:'';
+  position:absolute;
+  inset:18px -12px -12px 18px;
+  border:1px solid var(--amber);
+  border-radius:10px;
+  z-index:-1;
+}
+.profile-photo{
+  width:100%;
+  aspect-ratio:4 / 5;
+  object-fit:cover;
+  border-radius:7px;
+  border:1px solid var(--hairline-dark);
+  background:var(--ivory-dim);
+}
+.profile-photo-note{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--amber-soft);
+  margin-top:12px;
+  text-align:center;
 }
 .pulse-card{
   background:var(--navy);
@@ -718,6 +757,17 @@ section + section{ border-top:1px solid var(--hairline); }
   </div>
 
   <div class="hero-pulse-wrap">
+    <!-- PROFILE PHOTO
+      1. Create a folder named "images" in the same folder as this HTML file.
+      2. Add your photo there and name it "prachi-profile.jpg".
+      3. If your image has a different name, update the src below.
+      Example: src="images/your-photo.png"
+    -->
+    <div class="profile-photo-card">
+      <img src="images/prachi-profile.jpg" alt="Prachi Patolia profile photo" class="profile-photo" onerror="this.style.display='none'; this.nextElementSibling.textContent='Add your photo: images/prachi-profile.jpg';">
+      <div class="profile-photo-note">Prachi Patolia</div>
+    </div>
+
     <div class="pulse-card">
       <div class="pulse-label">Live Signal — Clinical → Data</div>
       <svg viewBox="0 0 300 110" id="pulseSvg">
