@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prachi Patolia — Data Analyst, Healthcare Data & Analytics</title>
+<meta name="description" content="Prachi Patolia — Business Data Analyst specializing in healthcare data, EHR/EMR analytics, and AI-driven process automation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+/* ============ TOKENS ============ */
+:root{
+  --navy:#13294B;
+  --navy-soft:#1C3A63;
+  --ivory:#F7F4EC;
+  --ivory-dim:#EFEADB;
+  --ink:#1C1C1A;
+  --amber:#C17F3E;
+  --amber-soft:#D9A878;
+  --sage:#7C9A82;
+  --hairline:#D8D3C4;
+  --hairline-dark:#33486B;
+
+  --display:'Fraunces', serif;
+  --body:'IBM Plex Sans', -apple-system, sans-serif;
+  --mono:'IBM Plex Mono', monospace;
+
+  --container: 1140px;
+  --pad: clamp(24px, 6vw, 64px);
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--ivory);
+  color:var(--ink);
+  font-family:var(--body);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+::selection{background:var(--amber-soft);color:var(--navy);}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+}
+
+:focus-visible{
+  outline:2px solid var(--amber);
+  outline-offset:3px;
+  border-radius:2px;
+}
+
+.wrap{max-width:var(--container); margin:0 auto; padding-left:var(--pad); padding-right:var(--pad);}
+
+/* ============ EYEBROW / LABELS ============ */
+.eyebrow{
+  font-family:var(--mono);
+  font-size:12px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--amber);
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.eyebrow::before{
+  content:'';
+  width:18px;height:1px;
+  background:var(--amber);
+  display:inline-block;
+}
+
+/* ============ NAV ============ */
+.nav{
+  position:fixed; top:0; left:0; right:0; z-index:50;
+  background:rgba(247,244,236,0.86);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--hairline);
+  transition:transform .35s ease;
+}
+.nav.nav--hide{ transform:translateY(-100%); }
+.nav-inner{
+  max-width:var(--container); margin:0 auto;
+  padding:18px var(--pad);
+  display:flex; align-items:center; justify-content:space-between;
+}
+.nav-mark{
+  font-family:var(--display);
+  font-weight:600;
+  font-size:19px;
+  letter-spacing:-0.01em;
+  text-decoration:none;
+  color:var(--navy);
+}
+.nav-mark span{color:var(--amber);}
+.nav-links{
+  display:flex; gap:32px;
+  list-style:none; margin:0; padding:0;
+}
+.nav-links a{
+  font-family:var(--mono);
+  font-size:12.5px;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  text-decoration:none;
+  color:var(--ink);
+  opacity:0.7;
+  transition:opacity .2s, color .2s;
+  position:relative;
+}
+.nav-links a:hover{ opacity:1; color:var(--amber); }
+.nav-cta{
+  font-family:var(--mono);
+  font-size:12.5px;
+  letter-spacing:0.04em;
+  text-decoration:none;
+  background:var(--navy);
+  color:var(--ivory);
+  padding:10px 18px;
+  border-radius:3px;
+  border:1px solid var(--navy);
+  transition:background .2s, color .2s;
+  white-space:nowrap;
+}
+.nav-cta:hover{ background:transparent; color:var(--navy); }
+.nav-toggle{
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  background:none; border:none; cursor:pointer;
+  padding:8px;
+}
+.nav-toggle span{
+  width:22px; height:2px; background:var(--navy); display:block; transition:.25s;
+}
+.nav-toggle.open span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2){ opacity:0; }
+.nav-toggle.open span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+
+.mobile-panel{
+  display:none;
+  position:fixed; inset:0; top:64px; z-index:49;
+  background:var(--ivory);
+  padding:32px var(--pad);
+  flex-direction:column;
+  gap:4px;
+}
+.mobile-panel.open{ display:flex; }
+.mobile-panel a{
+  font-family:var(--display);
+  font-size:28px;
+  text-decoration:none;
+  color:var(--navy);
+  padding:14px 0;
+  border-bottom:1px solid var(--hairline);
+}
+.mobile-panel .nav-cta{
+  margin-top:20px;
+  text-align:center;
+  display:block;
+}
+
+/* ============ HERO ============ */
+.hero{
+  position:relative;
+  padding:160px var(--pad) 90px;
+  max-width:var(--container);
+  margin:0 auto;
+  display:grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap:48px;
+  align-items:center;
+}
+.hero-line-svg{
+  position:absolute;
+  top:0; left:0; width:100%; height:100%;
+  pointer-events:none;
+  opacity:0.5;
+}
+.hero-eyebrow{margin-bottom:22px;}
+.hero h1{
+  font-family:var(--display);
+  font-weight:600;
+  font-size:clamp(40px, 6vw, 70px);
+  line-height:1.03;
+  letter-spacing:-0.01em;
+  margin:0 0 24px;
+  color:var(--navy);
+}
+.hero h1 em{
+  font-style:italic;
+  font-weight:400;
+  color:var(--amber);
+}
+.hero p.lede{
+  font-size:18px;
+  line-height:1.65;
+  color:#3D3D38;
+  max-width:520px;
+  margin:0 0 36px;
+}
+.hero-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px 28px;
+  font-family:var(--mono);
+  font-size:13px;
+  color:var(--navy);
+  margin-bottom:38px;
+}
+.hero-meta span{
+  display:flex; align-items:center; gap:7px;
+}
+.hero-meta .dot{
+  width:6px;height:6px;border-radius:50%;background:var(--sage);
+  flex-shrink:0;
+}
+.hero-actions{ display:flex; gap:14px; flex-wrap:wrap; }
+.btn{
+  font-family:var(--mono);
+  font-size:13px;
+  letter-spacing:0.04em;
+  text-decoration:none;
+  padding:14px 26px;
+  border-radius:3px;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  transition:all .22s ease;
+  border:1px solid var(--navy);
+}
+.btn-solid{ background:var(--navy); color:var(--ivory); }
+.btn-solid:hover{ background:var(--amber); border-color:var(--amber); color:var(--navy); }
+.btn-outline{ background:transparent; color:var(--navy); }
+.btn-outline:hover{ background:var(--navy); color:var(--ivory); }
+
+.hero-pulse-wrap{
+  position:relative;
+  display:flex;
+  justify-content:center;
+}
+.pulse-card{
+  background:var(--navy);
+  border-radius:6px;
+  padding:36px 28px;
+  width:100%;
+  max-width:340px;
+  color:var(--ivory);
+  position:relative;
+  overflow:hidden;
+}
+.pulse-card .pulse-label{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--amber-soft);
+  margin-bottom:18px;
+}
+.pulse-card svg{ width:100%; height:auto; display:block; }
+.pulse-stats{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  margin-top:24px;
+  padding-top:20px;
+  border-top:1px solid var(--hairline-dark);
+}
+.pulse-stat .num{
+  font-family:var(--display);
+  font-size:26px;
+  font-weight:600;
+  color:var(--ivory);
+  line-height:1;
+}
+.pulse-stat .lbl{
+  font-family:var(--mono);
+  font-size:10.5px;
+  color:var(--amber-soft);
+  letter-spacing:0.04em;
+  margin-top:4px;
+  display:block;
+}
+
+@media (max-width:880px){
+  .hero{ grid-template-columns:1fr; padding-top:130px; }
+  .hero-pulse-wrap{ margin-top:8px; }
+}
+
+/* ============ SECTION SCAFFOLDING ============ */
+section{ padding:96px 0; position:relative; }
+section + section{ border-top:1px solid var(--hairline); }
+.section-head{
+  margin-bottom:56px;
+  max-width:640px;
+}
+.section-head h2{
+  font-family:var(--display);
+  font-size:clamp(32px,4vw,46px);
+  font-weight:600;
+  color:var(--navy);
+  margin:14px 0 0;
+  letter-spacing:-0.01em;
+}
+.section-head p{
+  font-size:16.5px;
+  color:#4A4A44;
+  line-height:1.6;
+  margin-top:14px;
+  max-width:560px;
+}
+
+/* reveal-on-scroll */
+.reveal{
+  opacity:0;
+  transform:translateY(18px);
+  transition:opacity .7s ease, transform .7s ease;
+}
+.reveal.in{ opacity:1; transform:translateY(0); }
+
+/* ============ SUMMARY ============ */
+.summary-grid{
+  display:grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap:56px;
+  align-items:start;
+}
+.summary-points{ list-style:none; margin:0; padding:0; }
+.summary-points li{
+  display:flex; gap:16px;
+  padding:20px 0;
+  border-bottom:1px solid var(--hairline);
+  font-size:16px;
+  line-height:1.6;
+  color:#2B2B26;
+}
+.summary-points li:first-child{ padding-top:0; }
+.summary-points .mark{
+  font-family:var(--mono);
+  color:var(--amber);
+  flex-shrink:0;
+  font-size:13px;
+  padding-top:4px;
+}
+.summary-side{
+  background:var(--navy);
+  border-radius:6px;
+  padding:34px 30px;
+  color:var(--ivory);
+}
+.summary-side h3{
+  font-family:var(--display);
+  font-size:20px;
+  margin:0 0 18px;
+  color:var(--amber-soft);
+  font-weight:500;
+}
+.summary-side .chip-row{
+  display:flex; flex-wrap:wrap; gap:8px;
+  margin-top:18px;
+}
+.chip{
+  font-family:var(--mono);
+  font-size:12px;
+  padding:6px 12px;
+  border:1px solid var(--hairline-dark);
+  border-radius:20px;
+  color:var(--ivory);
+  opacity:0.92;
+}
+@media(max-width:880px){
+  .summary-grid{ grid-template-columns:1fr; gap:32px; }
+}
+
+/* ============ SKILLS ============ */
+.skills-grid{
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:1px;
+  background:var(--hairline);
+  border:1px solid var(--hairline);
+  border-radius:6px;
+  overflow:hidden;
+}
+.skill-card{
+  background:var(--ivory);
+  padding:30px 28px;
+}
+.skill-card .skill-eyebrow{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--sage);
+  margin-bottom:10px;
+}
+.skill-card h4{
+  font-family:var(--display);
+  font-size:19px;
+  font-weight:600;
+  margin:0 0 14px;
+  color:var(--navy);
+}
+.skill-card .tags{
+  display:flex; flex-wrap:wrap; gap:7px;
+}
+.skill-card .tags span{
+  font-family:var(--mono);
+  font-size:12px;
+  color:#3D3D38;
+  background:var(--ivory-dim);
+  border:1px solid var(--hairline);
+  padding:5px 10px;
+  border-radius:3px;
+}
+@media(max-width:700px){
+  .skills-grid{ grid-template-columns:1fr; }
+}
+
+/* ============ EXPERIENCE TIMELINE ============ */
+.timeline{
+  position:relative;
+}
+.timeline::before{
+  content:'';
+  position:absolute;
+  left:9px; top:8px; bottom:8px;
+  width:1px;
+  background:var(--hairline);
+}
+.tl-item{
+  position:relative;
+  padding-left:42px;
+  margin-bottom:52px;
+}
+.tl-item:last-child{ margin-bottom:0; }
+.tl-dot{
+  position:absolute;
+  left:0; top:6px;
+  width:19px; height:19px;
+  border-radius:50%;
+  background:var(--ivory);
+  border:2px solid var(--amber);
+  display:flex; align-items:center; justify-content:center;
+}
+.tl-dot::after{
+  content:'';
+  width:7px;height:7px;border-radius:50%;
+  background:var(--amber);
+}
+.tl-head{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  align-items:baseline;
+  gap:8px 20px;
+  margin-bottom:6px;
+}
+.tl-role{
+  font-family:var(--display);
+  font-size:23px;
+  font-weight:600;
+  color:var(--navy);
+}
+.tl-date{
+  font-family:var(--mono);
+  font-size:12.5px;
+  color:var(--amber);
+  letter-spacing:0.02em;
+  white-space:nowrap;
+}
+.tl-org{
+  font-family:var(--mono);
+  font-size:13px;
+  color:var(--sage);
+  margin-bottom:16px;
+  display:block;
+}
+.tl-org .loc{ color:#8a8a80; }
+.tl-list{
+  margin:0; padding:0; list-style:none;
+}
+.tl-list li{
+  position:relative;
+  padding-left:18px;
+  margin-bottom:10px;
+  font-size:15.5px;
+  line-height:1.6;
+  color:#2B2B26;
+}
+.tl-list li::before{
+  content:'—';
+  position:absolute; left:0; top:0;
+  color:var(--hairline-dark);
+  color:#B9B2A0;
+}
+
+/* ============ PROJECTS ============ */
+.project-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:24px;
+}
+.project-card{
+  border:1px solid var(--hairline);
+  border-radius:6px;
+  padding:32px 28px;
+  background:var(--ivory);
+  transition:border-color .25s, transform .25s, box-shadow .25s;
+}
+.project-card:hover{
+  border-color:var(--amber);
+  transform:translateY(-3px);
+  box-shadow:0 14px 30px -18px rgba(19,41,75,0.35);
+}
+.project-card .pn{
+  font-family:var(--mono);
+  font-size:12px;
+  color:var(--amber);
+  margin-bottom:14px;
+  display:block;
+}
+.project-card h4{
+  font-family:var(--display);
+  font-size:21px;
+  font-weight:600;
+  color:var(--navy);
+  margin:0 0 12px;
+  line-height:1.25;
+}
+.project-card p{
+  font-size:15px;
+  line-height:1.6;
+  color:#3D3D38;
+  margin:0 0 18px;
+}
+.project-card .tools{
+  font-family:var(--mono);
+  font-size:12px;
+  color:var(--sage);
+  border-top:1px solid var(--hairline);
+  padding-top:14px;
+}
+@media(max-width:760px){
+  .project-grid{ grid-template-columns:1fr; }
+}
+
+/* ============ EDUCATION ============ */
+.edu-list{
+  display:flex;
+  flex-direction:column;
+  gap:0;
+}
+.edu-item{
+  display:grid;
+  grid-template-columns:160px 1fr;
+  gap:24px;
+  padding:26px 0;
+  border-bottom:1px solid var(--hairline);
+}
+.edu-item:first-child{ padding-top:0; }
+.edu-tag{
+  font-family:var(--mono);
+  font-size:12px;
+  color:var(--amber);
+  letter-spacing:0.04em;
+  text-transform:uppercase;
+  padding-top:4px;
+}
+.edu-item h4{
+  font-family:var(--display);
+  font-size:20px;
+  font-weight:600;
+  margin:0 0 6px;
+  color:var(--navy);
+}
+.edu-item span.school{
+  font-family:var(--mono);
+  font-size:13.5px;
+  color:#4A4A44;
+}
+@media(max-width:600px){
+  .edu-item{ grid-template-columns:1fr; gap:6px; }
+}
+
+/* ============ CONTACT / FOOTER ============ */
+.footer{
+  background:var(--navy);
+  color:var(--ivory);
+  padding:96px 0 40px;
+  border-top:none;
+}
+.footer .wrap{ }
+.footer-top{
+  display:grid;
+  grid-template-columns:1.2fr 1fr 1fr;
+  gap:48px;
+  padding-bottom:64px;
+  border-bottom:1px solid var(--hairline-dark);
+}
+.footer-brand{
+  font-family:var(--display);
+  font-size:34px;
+  font-weight:600;
+  margin:0 0 16px;
+}
+.footer-brand span{ color:var(--amber-soft); }
+.footer-tagline{
+  color:#C9CFDA;
+  font-size:15px;
+  line-height:1.6;
+  max-width:340px;
+  margin-bottom:28px;
+}
+.footer-col h5{
+  font-family:var(--mono);
+  font-size:11.5px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--amber-soft);
+  margin:0 0 18px;
+}
+.footer-col a, .footer-col p{
+  display:block;
+  color:var(--ivory);
+  text-decoration:none;
+  font-size:14.5px;
+  line-height:1.9;
+  opacity:0.88;
+  margin:0 0 4px;
+}
+.footer-col a:hover{ color:var(--amber-soft); opacity:1; }
+.footer-bottom{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:12px;
+  padding-top:28px;
+  font-family:var(--mono);
+  font-size:12px;
+  color:#8C97AC;
+}
+@media(max-width:760px){
+  .footer-top{ grid-template-columns:1fr; gap:36px; }
+}
+
+/* back to top */
+.totop{
+  position:fixed;
+  bottom:24px; right:24px;
+  width:44px; height:44px;
+  border-radius:50%;
+  background:var(--navy);
+  color:var(--ivory);
+  display:flex; align-items:center; justify-content:center;
+  text-decoration:none;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .3s, transform .3s;
+  z-index:40;
+  border:1px solid var(--hairline-dark);
+}
+.totop.show{ opacity:1; pointer-events:auto; }
+.totop:hover{ background:var(--amber); color:var(--navy); }
+
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#top" class="nav-mark">Prachi<span>.</span>Patolia</a>
+    <ul class="nav-links">
+      <li><a href="#summary">Profile</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Get in touch</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-panel" id="mobilePanel">
+  <a href="#summary">Profile</a>
+  <a href="#skills">Skills</a>
+  <a href="#experience">Experience</a>
+  <a href="#projects">Projects</a>
+  <a href="#education">Education</a>
+  <a href="#contact" class="nav-cta">Get in touch</a>
+</div>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <div class="hero-copy">
+    <div class="eyebrow hero-eyebrow">Data Analyst — Healthcare Data &amp; Analytics</div>
+    <h1>Turning clinical<br>data into <em>decisions</em><br>that move care forward.</h1>
+    <p class="lede">Business Data Analyst translating clinical and operational healthcare data into action — spanning EHR/EMR analytics, KPI reporting, and AI-driven process automation across hospital and specialty care settings.</p>
+    <div class="hero-meta">
+      <span><span class="dot"></span>Dallas, TX — Open to Relocation</span>
+      <span><span class="dot"></span>patoliaprachi@gmail.com</span>
+      <span><span class="dot"></span>+1&nbsp;703&nbsp;332&nbsp;1901</span>
+    </div>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-solid">Get in touch</a>
+      <a href="https://github.com/Prachipatolia" target="_blank" rel="noopener" class="btn btn-outline">View GitHub ↗</a>
+    </div>
+  </div>
+
+  <div class="hero-pulse-wrap">
+    <div class="pulse-card">
+      <div class="pulse-label">Live Signal — Clinical → Data</div>
+      <svg viewBox="0 0 300 110" id="pulseSvg">
+        <polyline id="pulseLine" fill="none" stroke="#C17F3E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" points=""/>
+        <polyline id="pulseDash" fill="none" stroke="#3A5683" stroke-width="1" stroke-dasharray="3 4" points="0,80 300,80"/>
+      </svg>
+      <div class="pulse-stats">
+        <div class="pulse-stat"><div class="num">97%</div><span class="lbl">Model Accuracy</span></div>
+        <div class="pulse-stat"><div class="num">35%</div><span class="lbl">↓ Wait Times</span></div>
+        <div class="pulse-stat"><div class="num">70%</div><span class="lbl">↓ Search Time</span></div>
+        <div class="pulse-stat"><div class="num">95%</div><span class="lbl">Patient Satisfaction</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ SUMMARY ============ -->
+<section id="summary">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Profile Summary</div>
+      <h2>Where clinical operations meet data science.</h2>
+    </div>
+    <div class="summary-grid">
+      <ul class="summary-points reveal">
+        <li><span class="mark">01</span>Business Data Analyst with experience translating clinical and operational healthcare data into actionable insights, spanning EHR/EMR analytics, KPI reporting, and AI-driven process automation.</li>
+        <li><span class="mark">02</span>Skilled in building Tableau and Excel dashboards to track patient flow, appointment adherence, and operational KPIs that support data-driven decisions for clinic leadership.</li>
+        <li><span class="mark">03</span>Background spans data science and healthcare informatics, including predictive modeling, NLP/LLM-based tools, and EMR workflow optimization across hospital and specialty care settings.</li>
+        <li><span class="mark">04</span>Strong cross-functional collaborator, partnering with clinical teams, vendors, and stakeholders to identify automation opportunities and improve healthcare data processes.</li>
+      </ul>
+      <div class="summary-side reveal">
+        <h3>At a glance</h3>
+        <p style="font-size:14.5px; line-height:1.75; color:#DCE1EA; margin:0;">MS in Health Informatics &amp; Data Science from Georgetown University, with a clinical foundation in dentistry and hospital administration — giving every dashboard and model a grounding in how care actually gets delivered.</p>
+        <div class="chip-row">
+          <span class="chip">EHR / EMR Analytics</span>
+          <span class="chip">Predictive Modeling</span>
+          <span class="chip">RAG / LLMs</span>
+          <span class="chip">Tableau &amp; Power BI</span>
+          <span class="chip">Lean Six Sigma</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SKILLS ============ -->
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Technical Skills</div>
+      <h2>The instruments behind the insight.</h2>
+      <p>A toolkit spanning machine learning, healthcare data standards, visualization, and applied AI/LLM systems.</p>
+    </div>
+
+    <div class="skills-grid reveal">
+      <div class="skill-card">
+        <div class="skill-eyebrow">Languages</div>
+        <h4>Programming &amp; Scripting</h4>
+        <div class="tags">
+          <span>Python</span><span>R</span><span>SQL</span><span>JavaScript</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-eyebrow">Modeling</div>
+        <h4>Data Science &amp; Machine Learning</h4>
+        <div class="tags">
+          <span>Scikit-learn</span><span>XGBoost</span><span>Random Forest</span><span>Logistic Regression</span><span>GridSearchCV</span><span>Pandas</span><span>NumPy</span><span>enrichR</span><span>SimpleImputer</span><span>OneHotEncoder</span><span>5-fold CV</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-eyebrow">Reporting</div>
+        <h4>Data Visualization &amp; BI Tools</h4>
+        <div class="tags">
+          <span>Tableau</span><span>Microsoft Power BI</span><span>Excel (PivotTables, VLOOKUP)</span><span>Matplotlib</span><span>Seaborn</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-eyebrow">Standards</div>
+        <h4>Healthcare Technologies</h4>
+        <div class="tags">
+          <span>HL7</span><span>FHIR</span><span>OMOP CDM</span><span>RedCap</span><span>Synthea</span><span>EHR/EMR Systems</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-eyebrow">Applied AI</div>
+        <h4>NLP &amp; AI / LLMs</h4>
+        <div class="tags">
+          <span>Hugging Face Transformers</span><span>PubMedBERT</span><span>BioMistral</span><span>Llama 3</span><span>RAG</span><span>Weaviate</span><span>Vector Embeddings</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-eyebrow">Infrastructure</div>
+        <h4>Tools, Platforms &amp; Cloud</h4>
+        <div class="tags">
+          <span>Jupyter Notebook</span><span>RStudio</span><span>Git</span><span>Docker</span><span>SevenBridges</span><span>Pentaho</span><span>GCP</span><span>Microsoft Azure</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXPERIENCE ============ -->
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Work Experience</div>
+      <h2>From the dental chair to the data warehouse.</h2>
+    </div>
+
+    <div class="timeline">
+
+      <div class="tl-item reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-head">
+          <span class="tl-role">Business Data Analyst</span>
+          <span class="tl-date">Apr 2026 — Present</span>
+        </div>
+        <span class="tl-org">Assist Point <span class="loc">· Dallas, TX</span></span>
+        <ul class="tl-list">
+          <li>Analyze and report on clinical and operational data for specialty and infusion clinics to support data-driven decision making.</li>
+          <li>Support EHR/EMR workflows by identifying gaps, trends, and optimization opportunities in clinical data processes.</li>
+          <li>Collaborate with cross-functional teams to translate complex healthcare data into actionable insights for clinic leadership.</li>
+          <li>Contribute to organizational growth initiatives by evaluating and meeting with AI software vendors to identify automation opportunities across clinical workflows.</li>
+          <li>Lead efforts to automate insurance verification processes through AI-powered bots, reducing manual workload and improving operational efficiency.</li>
+          <li>Assist with ad-hoc data requests and routine reporting activities aligned with specialty and infusion care operations.</li>
+        </ul>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-head">
+          <span class="tl-role">Patient Services Coordinator</span>
+          <span class="tl-date">Mar 2025 — Mar 2026</span>
+        </div>
+        <span class="tl-org">Scotts Dental Group <span class="loc">· Fort Worth, TX</span></span>
+        <ul class="tl-list">
+          <li>Optimized patient scheduling and intake workflows within EHR systems, identifying inefficiencies and implementing process improvements that reduced data entry errors by 25% and improved appointment accuracy.</li>
+          <li>Analyzed front-office and clinical workflows to translate operational needs into system-level improvements, enhancing patient throughput and reducing scheduling conflicts.</li>
+          <li>Developed and maintained Excel and Tableau dashboards to monitor KPIs such as patient flow, appointment adherence, and no-show rates, enabling data-driven operational decisions.</li>
+        </ul>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-head">
+          <span class="tl-role">Data Scientist, Freelance</span>
+          <span class="tl-date">Sep 2024 — Feb 2025</span>
+        </div>
+        <span class="tl-org">Freelance <span class="loc">· Remote</span></span>
+        <ul class="tl-list">
+          <li>Built and optimized machine learning models (Random Forest, Logistic Regression, XGBoost) using CDC obesity risk data, achieving 97% predictive accuracy.</li>
+          <li>Automated preprocessing workflows with SimpleImputer and OneHotEncoder, reducing data cleaning time by 80% and accelerating model deployment.</li>
+          <li>Created dynamic Tableau dashboards highlighting obesity hotspots, enabling real-time decision-making and localized intervention strategies for stakeholders.</li>
+        </ul>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-head">
+          <span class="tl-role">Data Scientist Intern</span>
+          <span class="tl-date">May 2024 — Aug 2024</span>
+        </div>
+        <span class="tl-org">ICFVirginia</span>
+        <ul class="tl-list">
+          <li>Developed a generative AI chatbot for PDC using GraphQL APIs, Weaviate, and LLMs (BioMistral, Llama 3), enhancing response accuracy via Retrieval-Augmented Generation (RAG).</li>
+          <li>Leveraged Hugging Face's PubMedBERT to preprocess and embed complex scientific/medical text, reducing manual search time by 70% for researchers and medical staff.</li>
+          <li>Integrated Weaviate for real-time embedding storage and retrieval, enabling faster access to insights and reducing response latency by 45% across the system.</li>
+          <li>Fine-tuned domain-specific LLMs on curated clinical vocabularies to generate context-aware replies, collaborating with cross-functional teams to align chatbot functionality with end-user goals — resulting in 60% improvement in clinical content relevancy and 30% higher engagement during pilot rollout.</li>
+        </ul>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-head">
+          <span class="tl-role">Data Analyst</span>
+          <span class="tl-date">Nov 2020 — Jul 2023</span>
+        </div>
+        <span class="tl-org">Asian Bariatrics Hospital <span class="loc">· Ahmedabad, India</span></span>
+        <ul class="tl-list">
+          <li>Used advanced SQL to analyze EMR and administrative data, tracking KPIs that led to a 35% reduction in patient wait times and a 22% improvement in doctor utilization rates.</li>
+          <li>Designed Tableau dashboards to monitor patient outcomes, satisfaction, and revenue trends, while leading cross-functional Lean Six Sigma initiatives including root cause analysis — improving admission throughput and driving patient satisfaction to 95%.</li>
+          <li>Orchestrated end-to-end NABH accreditation process, contributing to a 25% surge in monthly patient intake and over INR 3.5M revenue increase over 12 months.</li>
+          <li>Supervised scheduling and clinical performance of 15+ medical officers, improving documentation turnaround time by 40% and ensuring regulatory compliance.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Projects</div>
+      <h2>Applied work, outside the day job.</h2>
+    </div>
+
+    <div class="project-grid">
+      <div class="project-card reveal">
+        <span class="pn">01 — Healthcare Systems</span>
+        <h4>EMR Workflow Enhancement for Hypertension Management</h4>
+        <p>Redesigned EMR usability for hypertension care using synthetic Synthea data by implementing clinical forms and critical threshold alerts. Developed Tableau dashboards to track patient metrics in real time, resulting in a 20% reduction in time-to-treatment initiation.</p>
+        <div class="tools">Synthea · Tableau · SQL</div>
+      </div>
+
+      <div class="project-card reveal">
+        <span class="pn">02 — Clinical Research</span>
+        <h4>Clinical Trial Attrition Prediction &amp; Geospatial Visualization</h4>
+        <p>Analyzed clinical trial data from ClinicalTrials.gov to uncover patient dropout patterns and participation gaps, leveraging geospatial visualizations to identify underserved regions. Delivered insights to inform trial design improvements and support strategies aimed at reducing dropout rates and improving enrollment effectiveness.</p>
+        <div class="tools">Python · Tableau · Geospatial Analysis</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EDUCATION ============ -->
+<section id="education">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Education</div>
+      <h2>Foundations — clinical to computational.</h2>
+    </div>
+
+    <div class="edu-list reveal">
+      <div class="edu-item">
+        <span class="edu-tag">Graduate</span>
+        <div>
+          <h4>Master of Science (MS), Health Informatics and Data Science</h4>
+          <span class="school">Georgetown University</span>
+        </div>
+      </div>
+      <div class="edu-item">
+        <span class="edu-tag">Graduate Diploma</span>
+        <div>
+          <h4>Postgraduate Diploma, Hospital Administration</h4>
+          <span class="school">California State University, San Bernardino</span>
+        </div>
+      </div>
+      <div class="edu-item">
+        <span class="edu-tag">Undergraduate</span>
+        <div>
+          <h4>Bachelor of Dental Surgery</h4>
+          <span class="school">Darshan Dental College and Hospital</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER / CONTACT ============ -->
+<footer class="footer" id="contact">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <p class="footer-brand">Let's talk<span>.</span></p>
+        <p class="footer-tagline">Open to relocation, and always glad to talk healthcare data, EMR optimization, or where AI genuinely helps clinical teams. Reach out below.</p>
+        <a href="mailto:patoliaprachi@gmail.com" class="btn btn-outline" style="display:inline-flex;border-color:var(--amber-soft);color:var(--ivory);">Email Prachi ↗</a>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <a href="mailto:patoliaprachi@gmail.com">patoliaprachi@gmail.com</a>
+        <a href="tel:+17033321901">+1 703 332 1901</a>
+        <p>Dallas, TX — Open to Relocation</p>
+      </div>
+      <div class="footer-col">
+        <h5>Elsewhere</h5>
+        <a href="https://www.linkedin.com/in/prachi-patolia-694b891a3" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="https://github.com/Prachipatolia" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Prachi Patolia</span>
+      <span>Data Analyst · Healthcare Data &amp; Analytics</span>
+    </div>
+  </div>
+</footer>
+
+<a href="#top" class="totop" id="toTop" aria-label="Back to top">↑</a>
+
+<script>
+// Nav scroll hide/show
+let lastY = window.scrollY;
+const nav = document.getElementById('nav');
+const toTop = document.getElementById('toTop');
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  if (y > lastY && y > 120) nav.classList.add('nav--hide');
+  else nav.classList.remove('nav--hide');
+  lastY = y;
+  toTop.classList.toggle('show', y > 600);
+}, { passive: true });
+
+// Mobile menu
+const navToggle = document.getElementById('navToggle');
+const mobilePanel = document.getElementById('mobilePanel');
+navToggle.addEventListener('click', () => {
+  const open = mobilePanel.classList.toggle('open');
+  navToggle.classList.toggle('open', open);
+  navToggle.setAttribute('aria-expanded', open);
+});
+mobilePanel.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  mobilePanel.classList.remove('open');
+  navToggle.classList.remove('open');
+  navToggle.setAttribute('aria-expanded', false);
+}));
+
+// Reveal on scroll
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.12 });
+reveals.forEach(el => io.observe(el));
+
+// Hero pulse line -> draws an EKG that settles into a calm data line
+(function(){
+  const ekg = "M0,55 L30,55 L40,20 L50,90 L60,55 L90,55 L100,40 L110,70 L120,55 L300,55";
+  const calmPoints = [
+    [0,80],[20,72],[40,75],[60,58],[80,62],[100,40],[120,48],
+    [140,30],[160,38],[180,22],[200,28],[220,15],[240,20],[260,10],[280,16],[300,8]
+  ];
+  const line = document.getElementById('pulseLine');
+  const svg = document.getElementById('pulseSvg');
+  if(!line) return;
+
+  // Phase 1: draw a heartbeat path using stroke-dash reveal
+  const ekgPath = document.createElementNS("http://www.w3.org/2000/svg","path");
+  ekgPath.setAttribute("d", ekg);
+  ekgPath.setAttribute("fill","none");
+  ekgPath.setAttribute("stroke","#C17F3E");
+  ekgPath.setAttribute("stroke-width","2.4");
+  ekgPath.setAttribute("stroke-linecap","round");
+  ekgPath.setAttribute("stroke-linejoin","round");
+  svg.insertBefore(ekgPath, line);
+  line.style.display = "none";
+
+  const len = ekgPath.getTotalLength();
+  ekgPath.style.strokeDasharray = len;
+  ekgPath.style.strokeDashoffset = len;
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if(prefersReduced){
+    ekgPath.style.display = "none";
+    line.style.display = "block";
+    line.setAttribute("points", calmPoints.map(p=>p.join(',')).join(' '));
+  } else {
+    let start = null;
+    const duration = 1100;
+    function animateDraw(ts){
+      if(!start) start = ts;
+      const progress = Math.min((ts-start)/duration, 1);
+      ekgPath.style.strokeDashoffset = len * (1-progress);
+      if(progress < 1) requestAnimationFrame(animateDraw);
+      else {
+        setTimeout(()=>{
+          ekgPath.style.transition = "opacity .6s ease";
+          ekgPath.style.opacity = "0";
+          line.style.display = "block";
+          line.style.opacity = "0";
+          line.style.transition = "opacity .8s ease";
+          // animate points morph simply by fade-in of final chart line
+          requestAnimationFrame(()=>{
+            line.setAttribute("points", calmPoints.map(p=>p.join(',')).join(' '));
+            line.style.opacity = "1";
+          });
+        }, 350);
+      }
+    }
+    requestAnimationFrame(animateDraw);
+  }
+})();
+</script>
+
+</body>
+</html>
